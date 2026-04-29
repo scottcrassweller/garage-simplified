@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Garage Simplified | Custom Storage Solutions – Northwest Suburbs of Chicago</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #F7F4EF;
+      --charcoal: #1C1C1C;
+      --warm-mid: #8C7B6B;
+      --wood: #C8A97E;
+      --wood-light: #E8D5B7;
+      --accent: #2B4A3E;
+      --accent-light: #3D6B5A;
+      --white: #FFFFFF;
+      --border: #E0D8CE;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--charcoal);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 5%;
+      background: rgba(247, 244, 239, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow 0.3s;
+    }
+    nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      color: var(--charcoal);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--warm-mid);
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--charcoal); }
+
+    .nav-cta {
+      background: var(--accent);
+      color: var(--white) !important;
+      padding: 0.6rem 1.4rem;
+      border-radius: 100px;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--accent-light) !important; color: var(--white) !important; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--charcoal);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 80px;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6% 5% 6% 8%;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 2px;
+      background: var(--accent);
+    }
+
+    .hero-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.6rem, 5vw, 4.2rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: var(--charcoal);
+      margin-bottom: 1.5rem;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--warm-mid);
+      max-width: 440px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--white);
+      padding: 0.9rem 2rem;
+      border-radius: 100px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.925rem;
+      letter-spacing: 0.01em;
+      transition: background 0.2s, transform 0.2s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); }
+
+    .btn-secondary {
+      border: 1.5px solid var(--border);
+      color: var(--charcoal);
+      padding: 0.9rem 2rem;
+      border-radius: 100px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.925rem;
+      transition: border-color 0.2s, transform 0.2s;
+      display: inline-block;
+    }
+    .btn-secondary:hover { border-color: var(--warm-mid); transform: translateY(-1px); }
+
+    .hero-trust {
+      margin-top: 3rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.8rem;
+      color: var(--warm-mid);
+    }
+    .hero-trust-dots { display: flex; gap: 4px; }
+    .hero-trust-dots span {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--wood);
+    }
+
+    .hero-gallery {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px;
+      overflow: hidden;
+    }
+
+    .hero-img {
+      overflow: hidden;
+      position: relative;
+    }
+    .hero-img:first-child {
+      grid-row: 1 / 3;
+    }
+    .hero-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .hero-img:hover img { transform: scale(1.04); }
+
+    /* ── SECTION BASE ── */
+    section { padding: 6rem 8%; }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--charcoal);
+      margin-bottom: 1.25rem;
+    }
+
+    .section-sub {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--warm-mid);
+      max-width: 520px;
+    }
+
+    /* ── SERVICES ── */
+    #services {
+      background: var(--charcoal);
+      color: var(--white);
+    }
+    #services .section-label { color: var(--wood); }
+    #services .section-title { color: var(--white); }
+    #services .section-sub { color: rgba(255,255,255,0.55); }
+
+    .services-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3.5rem;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5px;
+    }
+
+    .service-card {
+      background: #242424;
+      padding: 2.5rem 2rem;
+      transition: background 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 3px;
+      background: linear-gradient(90deg, var(--wood), var(--accent));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .service-card:hover { background: #2a2a2a; }
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .service-icon {
+      font-size: 2rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .service-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      color: var(--white);
+      margin-bottom: 0.75rem;
+    }
+
+    .service-desc {
+      font-size: 0.875rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* ── PORTFOLIO ── */
+    #portfolio { background: var(--cream); }
+
+    .portfolio-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: auto;
+      gap: 6px;
+    }
+
+    .portfolio-item {
+      overflow: hidden;
+      border-radius: 4px;
+      position: relative;
+      cursor: pointer;
+    }
+    .portfolio-item:nth-child(1) { grid-column: span 7; }
+    .portfolio-item:nth-child(2) { grid-column: span 5; }
+    .portfolio-item:nth-child(3) { grid-column: span 5; }
+    .portfolio-item:nth-child(4) { grid-column: span 7; }
+
+    .portfolio-item img {
+      width: 100%;
+      height: 320px;
+      object-fit: contain;
+      object-position: center;
+      background: var(--cream);
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .portfolio-item:hover img { transform: scale(1.05); }
+
+    .portfolio-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(28,28,28,0.7) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      display: flex;
+      align-items: flex-end;
+      padding: 1.5rem;
+    }
+    .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+
+    .portfolio-label {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      color: white;
+    }
+
+    /* ── PROCESS ── */
+    #process {
+      background: var(--wood-light);
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 3.5rem;
+    }
+
+    .process-step {
+      position: relative;
+    }
+
+    .step-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 3.5rem;
+      color: var(--wood);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .step-title {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      color: var(--charcoal);
+    }
+
+    .step-desc {
+      font-size: 0.875rem;
+      line-height: 1.65;
+      color: var(--warm-mid);
+    }
+
+    /* ── QUOTE FORM ── */
+    #quote {
+      background: var(--white);
+    }
+
+    .quote-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .quote-left .section-title { margin-bottom: 1rem; }
+
+    .quote-features {
+      list-style: none;
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .quote-features li {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      color: var(--warm-mid);
+    }
+
+    .quote-features li::before {
+      content: '✓';
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .quote-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-group label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 0.8rem 1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.925rem;
+      color: var(--charcoal);
+      background: var(--cream);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+      width: 100%;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(43, 74, 62, 0.12);
+    }
+
+    .form-group textarea { resize: vertical; min-height: 110px; }
+
+    .form-submit {
+      background: var(--accent);
+      color: var(--white);
+      border: none;
+      padding: 1rem 2.5rem;
+      border-radius: 100px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      align-self: flex-start;
+    }
+    .form-submit:hover { background: var(--accent-light); transform: translateY(-1px); }
+
+    .form-note {
+      font-size: 0.78rem;
+      color: var(--warm-mid);
+      margin-top: -0.5rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--charcoal);
+      color: rgba(255,255,255,0.5);
+      padding: 3rem 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .footer-logo span { color: var(--wood); }
+
+    .footer-area {
+      font-size: 0.8rem;
+    }
+
+    .footer-copy {
+      font-size: 0.78rem;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      background: var(--cream);
+    }
+
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .about-image-stack {
+      position: relative;
+      height: 520px;
+    }
+
+    .about-img-main {
+      position: absolute;
+      top: 0; left: 0;
+      width: 78%;
+      height: 88%;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .about-img-accent {
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 56%;
+      height: 52%;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 6px solid var(--cream);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    }
+
+    .about-badge {
+      position: absolute;
+      bottom: 48%;
+      left: 60%;
+      transform: translate(-50%, 50%);
+      background: var(--accent);
+      color: var(--white);
+      border-radius: 100px;
+      padding: 0.6rem 1.2rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      z-index: 2;
+      border: 3px solid var(--cream);
+    }
+
+    .about-content .section-title { margin-bottom: 1.5rem; }
+
+    .about-body {
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+
+    .about-body p {
+      font-size: 0.975rem;
+      line-height: 1.8;
+      color: var(--warm-mid);
+    }
+
+    .about-body p strong {
+      color: var(--charcoal);
+      font-weight: 600;
+    }
+
+    .about-values {
+      display: flex;
+      gap: 2rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .about-value {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .about-value-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .about-value-label {
+      font-size: 0.78rem;
+      color: var(--warm-mid);
+      font-weight: 500;
+    }
+
+    @media (max-width: 900px) {
+      .about-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .about-image-stack { height: 320px; }
+    }
+
+    /* ── END ABOUT ── */
+
+    
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 3rem 2rem;
+      background: var(--cream);
+      border-radius: 12px;
+      border: 1.5px solid var(--border);
+    }
+    .form-success .success-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .form-success h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.8rem;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .form-success p {
+      color: var(--warm-mid);
+      font-size: 0.95rem;
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── MOBILE NAV ── */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--cream);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      color: var(--charcoal);
+      text-decoration: none;
+    }
+    .mobile-menu a:hover { color: var(--accent); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      #hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+      .hero-content { padding: 3rem 6%; }
+      .hero-gallery {
+        height: 60vw;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+      }
+      .hero-img:first-child { grid-row: auto; }
+
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      section { padding: 4rem 6%; }
+
+      .portfolio-item:nth-child(1),
+      .portfolio-item:nth-child(2),
+      .portfolio-item:nth-child(3),
+      .portfolio-item:nth-child(4) {
+        grid-column: span 12;
+      }
+      .portfolio-item img { height: 220px; object-fit: contain; background: var(--cream); }
+
+      .quote-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .form-row { grid-template-columns: 1fr; }
+
+      .services-header { flex-direction: column; align-items: flex-start; }
+      .portfolio-header { flex-direction: column; align-items: flex-start; }
+
+      footer { flex-direction: column; text-align: center; }
+
+      /* ── LIGHT MOBILE OVERRIDES for Services (dark section) ── */
+      #services {
+        background: var(--cream);
+        color: var(--charcoal);
+      }
+      #services .section-label { color: var(--accent); }
+      #services .section-title { color: var(--charcoal); }
+      #services .section-sub { color: var(--warm-mid); }
+
+      .service-card {
+        background: var(--white);
+        border: 1.5px solid var(--border);
+        border-radius: 8px;
+      }
+      .service-card:hover { background: var(--cream); }
+
+      .service-name { color: var(--charcoal); }
+      .service-desc { color: var(--warm-mid); }
+    }
+
+    @media (max-width: 480px) {
+      .hero-gallery { height: 70vw; }
+      .hero-actions { flex-direction: column; }
+      .btn-primary, .btn-secondary { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="#hero" class="nav-logo">Garage <span>Simplified</span></a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Our Work</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#quote" class="nav-cta">Get a Quote</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#services" onclick="closeMobileMenu()">Services</a>
+    <a href="#portfolio" onclick="closeMobileMenu()">Our Work</a>
+    <a href="#process" onclick="closeMobileMenu()">Process</a>
+    <a href="#about" onclick="closeMobileMenu()">About Us</a>
+    <a href="#quote" onclick="closeMobileMenu()">Get a Quote</a>
+  </div>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-content fade-in">
+      <p class="hero-eyebrow">Northwest Suburbs of Chicago</p>
+      <h1 class="hero-title">Your garage,<br><em>finally</em><br>under control.</h1>
+      <p class="hero-sub">Custom-built wood storage systems designed for real life — garage shelving, kids' organization, and tote solutions built to last.</p>
+      <div class="hero-actions">
+        <a href="#quote" class="btn-primary">Get a Free Quote</a>
+        <a href="#portfolio" class="btn-secondary">See Our Work</a>
+      </div>
+      <div class="hero-trust">
+        <div class="hero-trust-dots">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        Custom-built · Locally owned · Free consultations
+      </div>
+    </div>
+    <div class="hero-gallery">
+      <div class="hero-img">
+        <img src="photo1.png" alt="Custom garage storage unit with rolling bins" loading="eager"/>
+      </div>
+      <div class="hero-img">
+        <img src="photo2.png" alt="Mudroom shelving with shoe storage" loading="eager"/>
+      </div>
+      <div class="hero-img">
+        <img src="photo4.png" alt="Kids organization unit" loading="eager"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="services-header">
+      <div>
+        <p class="section-label">What We Build</p>
+        <h2 class="section-title">Smart storage for<br>every space.</h2>
+      </div>
+      <p class="section-sub">Every system is custom-built to fit your space, your style, and the way your family actually lives.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-in">
+        <div class="service-icon">🪵</div>
+        <h3 class="service-name">Garage Storage & Shelving</h3>
+        <p class="service-desc">Floor-to-ceiling shelving, rolling storage carts, and wall systems that transform a cluttered garage into a space you're proud of.</p>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon">🎒</div>
+        <h3 class="service-name">Kids' Organization Units</h3>
+        <p class="service-desc">Backpack stations, coat cubbies, and shoe racks built to handle the chaos of busy family life — and make after-school drop-off effortless.</p>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon">📦</div>
+        <h3 class="service-name">Custom Bin & Tote Storage</h3>
+        <p class="service-desc">Purpose-built shelving sized exactly for your storage bins — no more teetering stacks, no wasted vertical space.</p>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon">💬</div>
+        <h3 class="service-name">Free Consultations</h3>
+        <p class="service-desc">Not sure where to start? We'll assess your space, understand how you use it, and design a solution that actually makes sense for your home.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio">
+    <div class="portfolio-header">
+      <div>
+        <p class="section-label">Our Work</p>
+        <h2 class="section-title">Built by hand.<br>Built to last.</h2>
+      </div>
+      <p class="section-sub">Every project is one-of-a-kind. Here's a look at what we've built for families across the Northwest Suburbs.</p>
+    </div>
+    <div class="portfolio-grid">
+      <div class="portfolio-item fade-in">
+        <img src="photo1.png" alt="Rolling garage tote storage unit"/>
+        <div class="portfolio-overlay"><span class="portfolio-label">Rolling Tote Cart</span></div>
+      </div>
+      <div class="portfolio-item fade-in">
+        <img src="photo2.png" alt="Mudroom storage wall with shoe shelving and tote bins"/>
+        <div class="portfolio-overlay"><span class="portfolio-label">Mudroom Storage Wall</span></div>
+      </div>
+      <div class="portfolio-item fade-in">
+        <img src="photo3.png" alt="Freestanding bin and cubby storage system"/>
+        <div class="portfolio-overlay"><span class="portfolio-label">Bin & Cubby System</span></div>
+      </div>
+      <div class="portfolio-item fade-in">
+        <img src="photo4.png" alt="Kids backpack and shoe storage unit"/>
+        <div class="portfolio-overlay"><span class="portfolio-label">Kids' Entryway Unit</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <p class="section-label">How It Works</p>
+    <h2 class="section-title">Simple from start<br>to finish.</h2>
+    <div class="process-grid">
+      <div class="process-step fade-in">
+        <div class="step-num">01</div>
+        <h3 class="step-title">Free Consultation</h3>
+        <p class="step-desc">We visit your space, talk through how you use it, and figure out exactly what you need — no pressure, no guesswork.</p>
+      </div>
+      <div class="process-step fade-in">
+        <div class="step-num">02</div>
+        <h3 class="step-title">Custom Design</h3>
+        <p class="step-desc">We design a storage solution sized and configured specifically for your home and your family's habits.</p>
+      </div>
+      <div class="process-step fade-in">
+        <div class="step-num">03</div>
+        <h3 class="step-title">Built & Installed</h3>
+        <p class="step-desc">We build and install everything — you don't lift a finger. Most projects are done in a single day.</p>
+      </div>
+      <div class="process-step fade-in">
+        <div class="step-num">04</div>
+        <h3 class="step-title">Enjoy the Space</h3>
+        <p class="step-desc">Walk into a garage (or mudroom, or playroom) that's actually organized — and stays that way.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-inner">
+      <div class="about-image-stack fade-in">
+        <img class="about-img-main" src="photo3.png" alt="Custom storage system built for a family"/>
+        <img class="about-img-accent" src="photo4.png" alt="Kids entryway organization unit"/>
+        <div class="about-badge">🏡 Family Owned</div>
+      </div>
+      <div class="about-content fade-in">
+        <p class="section-label">Our Story</p>
+        <h2 class="section-title">Built out of<br><em style="font-style:italic; color:var(--accent)">necessity.</em></h2>
+        <div class="about-body">
+          <p>
+            <strong>Garage Simplified started the way most good ideas do — out of pure frustration.</strong> We're a family based in the Northwest Suburbs of Chicago, and for years our garage was the room we dreaded. Bikes falling over, totes stacked to the ceiling, the kids' gear mixed in with everything else. Every morning felt like a small disaster just trying to get out the door.
+          </p>
+          <p>
+            We tried the store-bought shelves. We tried the plastic bins. Nothing quite fit, and nothing quite held up. So we did what felt natural — we built our own. A custom wood storage system, designed around the way our family actually lives. The bins we actually own. The backpacks, the shoes, the sports gear. All of it, finally with a home.
+          </p>
+          <p>
+            <strong>The difference was immediate.</strong> Mornings got calmer. The garage stopped being a source of stress and started being a space we were genuinely proud of. Our neighbors noticed. Our friends started asking questions. And that's when we realized — this isn't just something we built for ourselves. It's something we could build for our community.
+          </p>
+          <p>
+            That's Garage Simplified. Real people, real families, real solutions — handcrafted right here in the suburbs we call home.
+          </p>
+        </div>
+        <div class="about-values">
+          <div class="about-value">
+            <span class="about-value-num">100%</span>
+            <span class="about-value-label">Custom built</span>
+          </div>
+          <div class="about-value">
+            <span class="about-value-num">Local</span>
+            <span class="about-value-label">NW Suburbs of Chicago</span>
+          </div>
+          <div class="about-value">
+            <span class="about-value-num">Free</span>
+            <span class="about-value-label">Consultations</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE FORM -->
+  <section id="quote">
+    <div class="quote-inner">
+      <div class="quote-left">
+        <p class="section-label">Get Started</p>
+        <h2 class="section-title">Let's build<br>something great.</h2>
+        <p class="section-sub">Fill out the form and we'll be in touch within one business day to schedule your free consultation.</p>
+        <ul class="quote-features">
+          <li>Free, no-obligation consultation</li>
+          <li>Custom designs for your exact space</li>
+          <li>Built and installed by hand</li>
+          <li>Serving the Northwest Suburbs of Chicago</li>
+        </ul>
+      </div>
+      <div class="quote-right">
+        <form class="quote-form" id="quoteForm" name="quote-request" netlify netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="quote-request"/>
+          <div style="display:none">
+            <input name="bot-field"/>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" name="first_name" placeholder="Jane" required/>
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" name="last_name" placeholder="Smith" required/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="jane@example.com" required/>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="(847) 555-0100"/>
+          </div>
+          <div class="form-group">
+            <label for="service">Type of Project</label>
+            <select id="service" name="service_type" required>
+              <option value="" disabled selected>Select a project type…</option>
+              <option>Garage Storage & Shelving</option>
+              <option>Kids' Organization Unit</option>
+              <option>Custom Bin & Tote Storage</option>
+              <option>Mudroom / Entryway</option>
+              <option>Not sure yet — need ideas</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Tell Us About Your Space</label>
+            <textarea id="message" name="message" placeholder="Describe your space, what's not working, or what you're hoping to achieve. The more detail, the better!"></textarea>
+          </div>
+          <p class="form-note">We'll respond within 1 business day.</p>
+          <button type="submit" class="form-submit">Send My Request →</button>
+        </form>
+        <div class="form-success" id="formSuccess">
+          <div class="success-icon">✅</div>
+          <h3>Request Received!</h3>
+          <p>Thanks for reaching out. We'll be in touch within one business day to schedule your free consultation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="#hero" class="footer-logo">Garage <span>Simplified</span></a>
+    <p class="footer-area">📍 Northwest Suburbs of Chicago</p>
+    <p class="footer-copy">© 2025 Garage Simplified. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Nav scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 30);
+    });
+
+    // Hamburger
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+    });
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('open');
+    }
+
+    // Scroll fade-in
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Hero fade in on load
+    document.querySelector('.hero-content').classList.add('visible');
+
+    // ── GEORGE THE CHATBOT ──
+    const GEORGE_SYSTEM = `You are George, a friendly and helpful assistant for Garage Simplified, a custom wood storage business in the Northwest Suburbs of Chicago. Your personality is warm, conversational, and enthusiastic about helping people get organized. You are like a knowledgeable friend, not a salesperson.
+
+YOUR GOALS (in order):
+1. Answer questions about the business helpfully and honestly
+2. Understand what the customer needs and qualify them
+3. Capture their name, email, and project details
+4. Encourage them to fill out the quote form or offer to collect their info yourself
+
+ABOUT GARAGE SIMPLIFIED:
+- We build custom wood storage systems by hand in the Northwest Suburbs of Chicago
+- Services: Garage storage and shelving, Kids organization units, Custom bin and tote storage
+- Free consultations, no pressure, no obligation
+- Installation time depends on the project, could be a few hours or a full day
+- Pricing: typically $750-$1,500 but every project is custom quoted
+- We can supply bins at cost (no markup) and customer pays for them directly
+- We serve the Northwest Suburbs of Chicago
+- Delivery fee applies based on the size of the unit and driving distance — mentioned if asked
+- Build and installation timeline is typically 2-4 weeks depending on availability and complexity of the job
+
+QUALIFICATION QUESTIONS TO WORK IN NATURALLY (do not ask all at once):
+- What space are they organizing? (garage, mudroom, kids room?)
+- Freestanding, wall-mounted, or both?
+- Do they have bins already or need them?
+- What is their timeline?
+- Budget expectations?
+
+LEAD CAPTURE:
+- Once someone seems interested, ask for their first name and email
+- Let them know Scott will follow up within 1 business day
+- You can also direct them to the quote form on the page
+
+NAVIGATION HELP:
+- Services section: scroll down to see what we offer
+- Portfolio: Our Work section has photos
+- Quote form: easiest way to get started is the form at the bottom of the page
+- Process: the Process section walks through the 4 steps
+
+IMPORTANT RULES:
+- Keep responses SHORT, 2-4 sentences max. This is a chat not an essay.
+- Be friendly and use the customer name once you have it
+- Never make up prices or promises
+- If you do not know something say that is a great question for Scott and offer to get their info
+- Do not be pushy
+- End most responses with a natural follow-up question`;
+
+    let georgeMessages = [];
+    let georgeIsOpen = false;
+
+    const georgeWidget = document.createElement('div');
+    georgeWidget.id = 'george-widget';
+    georgeWidget.innerHTML = `
+      <style>
+        #george-widget * { box-sizing: border-box; }
+        #george-bubble {
+          position: fixed; bottom: 28px; right: 28px; z-index: 9999;
+          width: 60px; height: 60px; border-radius: 50%;
+          background: linear-gradient(135deg, #2B4A3E, #3D6B5A);
+          box-shadow: 0 4px 24px rgba(43,74,62,0.4);
+          cursor: pointer; display: flex; align-items: center; justify-content: center;
+          font-size: 1.5rem; transition: transform 0.2s;
+          border: none; outline: none;
+        }
+        #george-bubble:hover { transform: scale(1.08); }
+        .george-notif {
+          position: absolute; top: -2px; right: -2px;
+          width: 16px; height: 16px; border-radius: 50%;
+          background: #E53E3E; border: 2px solid white;
+        }
+        #george-window {
+          position: fixed; bottom: 100px; right: 28px; z-index: 9999;
+          width: 350px; background: #F7F4EF; border-radius: 20px;
+          box-shadow: 0 12px 48px rgba(0,0,0,0.18);
+          display: flex; flex-direction: column; overflow: hidden;
+          transform: scale(0.9) translateY(20px); opacity: 0; pointer-events: none;
+          transition: all 0.25s cubic-bezier(0.34,1.56,0.64,1);
+          transform-origin: bottom right;
+        }
+        #george-window.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
+        #george-header {
+          background: linear-gradient(135deg, #2B4A3E, #3D6B5A);
+          padding: 1rem 1.25rem; display: flex; align-items: center; gap: 0.75rem;
+        }
+        #george-avatar {
+          width: 38px; height: 38px; border-radius: 50%;
+          background: rgba(255,255,255,0.15);
+          display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+        }
+        #george-name { font-family: 'DM Serif Display', serif; font-size: 1rem; color: white; }
+        #george-status { font-size: 0.72rem; color: rgba(255,255,255,0.7); display: flex; align-items: center; gap: 0.3rem; }
+        #george-status::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #68D391; display: block; }
+        #george-close { background: none; border: none; color: rgba(255,255,255,0.7); cursor: pointer; font-size: 1.1rem; margin-left: auto; padding: 0.2rem; }
+        #george-close:hover { color: white; }
+        #george-messages {
+          padding: 1rem; display: flex; flex-direction: column; gap: 0.75rem;
+          max-height: 340px; overflow-y: auto; scroll-behavior: smooth;
+        }
+        #george-messages::-webkit-scrollbar { width: 4px; }
+        #george-messages::-webkit-scrollbar-thumb { background: #E0D8CE; border-radius: 4px; }
+        .gmsg {
+          max-width: 85%; padding: 0.65rem 0.9rem; border-radius: 14px;
+          font-size: 0.875rem; line-height: 1.55; font-family: 'DM Sans', sans-serif;
+          animation: gfadein 0.3s ease;
+        }
+        @keyframes gfadein { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+        .gmsg.bot { background: white; color: #1C1C1C; border-bottom-left-radius: 4px; box-shadow: 0 1px 4px rgba(0,0,0,0.07); align-self: flex-start; }
+        .gmsg.user { background: #2B4A3E; color: white; border-bottom-right-radius: 4px; align-self: flex-end; }
+        .gtyping { display: flex; align-items: center; gap: 4px; padding: 0.65rem 0.9rem; background: white; border-radius: 14px; border-bottom-left-radius: 4px; align-self: flex-start; box-shadow: 0 1px 4px rgba(0,0,0,0.07); }
+        .gtyping span { width: 7px; height: 7px; border-radius: 50%; background: #C8A97E; animation: gbounce 1.2s ease infinite; }
+        .gtyping span:nth-child(2) { animation-delay: 0.2s; }
+        .gtyping span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes gbounce { 0%,60%,100% { transform:translateY(0); } 30% { transform:translateY(-5px); } }
+        #george-input-area {
+          padding: 0.75rem 1rem; background: white; border-top: 1px solid #E0D8CE;
+          display: flex; gap: 0.5rem; align-items: flex-end;
+        }
+        #george-input {
+          flex: 1; border: 1.5px solid #E0D8CE; border-radius: 20px;
+          padding: 0.6rem 1rem; font-family: 'DM Sans', sans-serif; font-size: 0.875rem;
+          outline: none; resize: none; background: #F7F4EF; color: #1C1C1C;
+          transition: border-color 0.2s; max-height: 80px;
+        }
+        #george-input:focus { border-color: #2B4A3E; }
+        #george-send {
+          width: 36px; height: 36px; border-radius: 50%; background: #2B4A3E;
+          border: none; cursor: pointer; color: white; font-size: 0.85rem;
+          display: flex; align-items: center; justify-content: center;
+          transition: background 0.2s; flex-shrink: 0;
+        }
+        #george-send:hover { background: #3D6B5A; }
+        #george-send:disabled { background: #E0D8CE; cursor: not-allowed; }
+        @media (max-width: 480px) {
+          #george-window { width: calc(100vw - 20px); right: 10px; }
+          #george-bubble { bottom: 16px; right: 16px; }
+        }
+      </style>
+      <button id="george-bubble" aria-label="Chat with George">
+        🪵
+        <div class="george-notif"></div>
+      </button>
+      <div id="george-window">
+        <div id="george-header">
+          <div id="george-avatar">🪵</div>
+          <div>
+            <div id="george-name">George</div>
+            <div id="george-status">Online now</div>
+          </div>
+          <button id="george-close">✕</button>
+        </div>
+        <div id="george-messages"></div>
+        <div id="george-input-area">
+          <textarea id="george-input" rows="1" placeholder="Ask George anything..."></textarea>
+          <button id="george-send">➤</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(georgeWidget);
+
+    const gBubble = document.getElementById('george-bubble');
+    const gWindow = document.getElementById('george-window');
+    const gMessages = document.getElementById('george-messages');
+    const gInput = document.getElementById('george-input');
+    const gSend = document.getElementById('george-send');
+
+    function gAddMsg(text, role) {
+      const d = document.createElement('div');
+      d.className = 'gmsg ' + role;
+      d.textContent = text;
+      gMessages.appendChild(d);
+      gMessages.scrollTop = gMessages.scrollHeight;
+    }
+
+    function gShowTyping() {
+      const t = document.createElement('div');
+      t.className = 'gtyping'; t.id = 'gtyping';
+      t.innerHTML = '<span></span><span></span><span></span>';
+      gMessages.appendChild(t);
+      gMessages.scrollTop = gMessages.scrollHeight;
+    }
+
+    function gHideTyping() {
+      const t = document.getElementById('gtyping');
+      if (t) t.remove();
+    }
+
+    async function gReply(userMsg) {
+      georgeMessages.push({ role: 'user', content: userMsg });
+      gSend.disabled = true;
+      gShowTyping();
+      try {
+        const res = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': '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',
+            'anthropic-version': '2023-06-01',
+            'anthropic-dangerous-allow-browser': 'true'
+          },
+          body: JSON.stringify({
+            model: 'claude-sonnet-4-20250514',
+            max_tokens: 1000,
+            system: GEORGE_SYSTEM,
+            messages: georgeMessages
+          })
+        });
+        const data = await res.json();
+        const reply = data.content?.[0]?.text || "Sorry, I had a hiccup! Try the quote form below.";
+        gHideTyping();
+        georgeMessages.push({ role: 'assistant', content: reply });
+        gAddMsg(reply, 'bot');
+      } catch(e) {
+        gHideTyping();
+        gAddMsg("Hmm, connection issue! Try the quote form below and Scott will be in touch.", 'bot');
+      }
+      gSend.disabled = false;
+      gInput.focus();
+    }
+
+    function gOpen() {
+      georgeIsOpen = true;
+      gWindow.classList.add('open');
+      document.querySelector('.george-notif')?.remove();
+      if (georgeMessages.length === 0) {
+        setTimeout(() => gAddMsg("Hey there! I'm George, the Garage Simplified assistant. I'm here to help you figure out the best storage solution for your space. What's on your mind?", 'bot'), 300);
+      }
+      setTimeout(() => gInput.focus(), 350);
+    }
+
+    function gClose() {
+      georgeIsOpen = false;
+      gWindow.classList.remove('open');
+    }
+
+    gBubble.addEventListener('click', () => georgeIsOpen ? gClose() : gOpen());
+    document.getElementById('george-close').addEventListener('click', gClose);
+
+    async function gSendMsg() {
+      const text = gInput.value.trim();
+      if (!text) return;
+      gAddMsg(text, 'user');
+      gInput.value = '';
+      gInput.style.height = 'auto';
+      await gReply(text);
+    }
+
+    gSend.addEventListener('click', gSendMsg);
+    gInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); gSendMsg(); }
+    });
+    gInput.addEventListener('input', function() {
+      this.style.height = 'auto';
+      this.style.height = Math.min(this.scrollHeight, 80) + 'px';
+    });
+
+    // Form submit — POST to Netlify then show success
+    const quoteForm = document.getElementById('quoteForm');
+    quoteForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formData = new FormData(quoteForm);
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString()
+      })
+      .then(() => {
+        quoteForm.style.display = 'none';
+        document.getElementById('formSuccess').style.display = 'block';
+      })
+      .catch(() => {
+        alert('Something went wrong — please try again.');
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+[build]
+  publish = "."
+
+[build.environment]
+  SECRETS_SCAN_OMIT_KEYS = "ANTHROPIC_API_KEY"
+  SECRETS_SCAN_OMIT_PATHS = "index.html"
